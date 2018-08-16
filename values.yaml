@@ -1,0 +1,7 @@
+global:
+  namespace: cluster-config
+
+config:
+#  There is no default value for cluster name.
+#  Must be provided by custom values file or overridded by a parent chart.
+#  name:
