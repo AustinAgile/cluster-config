@@ -1,6 +1,31 @@
-# cluster-config
+# Overview
+The purpose of this is to be a source of shared configuration across the whole cluster.
+The need for this is because ConfigMaps are scoped to NameSpaces,
+hence it is not possible to address shared cluster-wide configuration with ConfigMaps.
 
-Currently this is nothing more than a configmap to define the cluster name.
+## Installation
+This is a Helm chart.
+There is a default values file, and a values folder with non-default values.
+
+Currently there are 2 non-default values files that would be used as appropriate:
+* aws.condel.yaml
+```
+> cd <cluster-config root folder>
+> helm install cluster-config -f cluster-config/values/aws.condel.yaml
+```
+* developer.yaml
+```
+> cd <cluster-config root folder>
+> helm install cluster-config -f cluster-config/values/developer.yaml
+```
+
+## Configuration
+
+### Cluster Name
+This defines a name for the cluster.
+There is currently one application of needing this as shared configuration: Ingress Controllers.
+
+#### Use by Ingress Controller
 The matr-ingress-controller uses this cluster name to append to all ingress host names.
 If an ingress host is a.b and the cluster name is c.d then the matr-ingress-controller will respond to a.b.c.d
 
